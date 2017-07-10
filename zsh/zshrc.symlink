@@ -38,7 +38,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(grunt brew coffee cake command-not-found github git-flow git-extras git-hubflow rake history-substring-search bower vundle git fasd osx virtualenvwrapper terminalapp python pip lol)
+plugins=(brew command-not-found github git-flow git-extras rake history-substring-search vundle git fasd osx virtualenvwrapper terminalapp python pip lol)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,8 +93,8 @@ bindkey -v
 
 # Use control+j and control+k for scrolling through history, since removing all
 # bindings that begin with escape also removes the arrow-key bindings
-bindkey "^K" history-substring-search-up
-bindkey "^J" history-substring-search-down
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
 
 # Press Ctrl+Q to push the current command on to the stack. It will disappear,
 # allowing you to enter another command, after which it will reappear in the
@@ -114,9 +114,6 @@ then
   source ~/.zshrc.local
 fi
 
-# Teamocil completion (tmux layout manager)
-compctl -g '~/.teamocil/*(:t:r)' teamocil
-
 # SHELLSHOCK:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # To anyone worried about using servers that may not have attentive admins -
@@ -130,16 +127,6 @@ env x='() { :;}; echo "WARNING: SHELLSHOCK DETECTED"' \
 # to launch a new shell slightly, but for some, this may be worth it.
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-export NVM_DIR="/Users/will/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Grunt task tab-completion
-eval "$(grunt --completion=zsh)"
-# Gulp task tab-completion
-eval "$(gulp --completion=zsh)"
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 # Initialize fasd
 eval "$(fasd --init auto)"
 
@@ -147,6 +134,3 @@ test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_in
 
 # Load `zmv` (alternative to `mmv`)
 autoload zmv
-
-# added by travis gem
-[ -f /Users/will/.travis/travis.sh ] && source /Users/will/.travis/travis.sh
